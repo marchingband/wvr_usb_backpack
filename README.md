@@ -1,4 +1,4 @@
-(This code was based on a [fork](https://github.com/studiohsoftware/USB_Host_Library_SAMD/blob/master/examples/USBH_MIDI/USB_MIDI_Using_Interrupts/USB_MIDI_Using_Interrupts.ino) of [gdsports/USB_Host_Library_SAMD](https://github.com/gdsports/USB_Host_Library_SAMD). I also drew heavily on this [article](http://www.plzi.com/aanta/usbmidihost.asp). You can read it if you are interested in setting up Arduino to hack on this code.)
+(This code was based on a [fork](https://github.com/studiohsoftware/USB_Host_Library_SAMD/blob/master/examples/USBH_MIDI/USB_MIDI_Using_Interrupts/USB_MIDI_Using_Interrupts.ino) by [studio h software](https://github.com/studiohsoftware), of [gdsports/USB_Host_Library_SAMD](https://github.com/gdsports/USB_Host_Library_SAMD). I also drew heavily on this [article](http://www.plzi.com/aanta/usbmidihost.asp). You can read it if you are interested in setting up Arduino to hack on this code.)
 
 
 # wvr_usb_backpack
