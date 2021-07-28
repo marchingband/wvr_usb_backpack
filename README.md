@@ -1,6 +1,9 @@
 # wvr_usb_backpack
 Firmware for the WVR Midi USB Host Backpack
 
+This code was based on a fork of gdsports/USB_Host_Library_SAMD. The fork is here : https://github.com/studiohsoftware/USB_Host_Library_SAMD/blob/master/examples/USBH_MIDI/USB_MIDI_Using_Interrupts/USB_MIDI_Using_Interrupts.ino
+I also drew heavily on this article : http://www.plzi.com/aanta/usbmidihost.asp. You can read it if you are interested in setting up Arduino to hack on this code.
+
 # how to update the firmware
 * Make sure the WVR is not powered in any way! Then ...
 * Connect the USB Backpack to a computer using the USB microB jack on the backpack (not the one on the WVR). The WVR should turn on, and the LED on the WVR should light.
