@@ -1,3 +1,5 @@
+// #include <Arduino.h>
+
 #include <usbh_midi.h>
 #include <usbhub.h>
 #include <MIDI.h>       // MIDI Library by Forty Seven Effects
@@ -21,6 +23,8 @@
 
 #define MIDI_SERIAL_PORT Serial1
 
+//Uart MIDI_UART(&sercom0, 7, 6, PAD_SERIAL1_RX, PAD_SERIAL1_TX );
+
 struct MySettings : public midi::DefaultSettings
 {
 //  static const bool Use1ByteParsing = false;
@@ -30,6 +34,7 @@ struct MySettings : public midi::DefaultSettings
 };
 
 MIDI_CREATE_CUSTOM_INSTANCE(HardwareSerial, MIDI_SERIAL_PORT, MIDIUART, MySettings);
+//MIDI_CREATE_CUSTOM_INSTANCE(HardwareSerial, MIDI_UART, MIDIUART, MySettings);
 
 
 USBHost UsbH;
@@ -61,6 +66,7 @@ void setup()
 
 void loop()
 {
+  Serial.print(".");
   //Note that Task() polls a hub if present, and we want to avoid polling.
   //So these conditions carry out enumeration only, and then stop running.
   //The idea is that except for enumeration (and release) this loop should 
@@ -206,25 +212,18 @@ void handleBank0(uint32_t epAddr){
   int rcvd = uhd_byte_count0(epAddr);
   for(int i=0;i<rcvd;i++)
   {
-    MIDI_SERIAL_PORT.write(bufBk0[i]);
-//    if(bufBk0[i] != 0)
-//    {
-//      MIDI_SERIAL_PORT.write(bufBk0[i++]);
-//      MIDI_SERIAL_PORT.write(bufBk0[i++]);
-//      MIDI_SERIAL_PORT.write(bufBk0[i++]);
-//      MIDI_SERIAL_PORT.write(bufBk0[i]);
-//      break;
-//    }
+    if(bufBk0[i] == 0)
+    {
+      continue;
+    } 
+    else 
+    {
+      MIDI_SERIAL_PORT.write(bufBk0[i]);
+      MIDI_SERIAL_PORT.write(bufBk0[++i]);
+      MIDI_SERIAL_PORT.write(bufBk0[++i]);
+      MIDI_SERIAL_PORT.write(bufBk0[++i]);
+    }
   }
-  // int i=0;
-  // while(bufBk0[i] == 0)
-  // {
-  //   i++;
-  // }
-  // MIDI_SERIAL_PORT.write(bufBk0[i++]);
-  // MIDI_SERIAL_PORT.write(bufBk0[i++]);
-  // MIDI_SERIAL_PORT.write(bufBk0[i++]);
-  // MIDI_SERIAL_PORT.write(bufBk0[i++]);
   uhd_ack_in_received0(epAddr);
   uhd_ack_in_ready0(epAddr);
 }
@@ -233,25 +232,18 @@ void handleBank1(uint32_t epAddr){
   int rcvd = uhd_byte_count1(epAddr);
   for(int i=0;i<rcvd;i++)
   {
-    MIDI_SERIAL_PORT.write(bufBk1[i]);
-//    if(bufBk1[i] != 0)
-//    {
-//      MIDI_SERIAL_PORT.write(bufBk1[i++]);
-//      MIDI_SERIAL_PORT.write(bufBk1[i++]);
-//      MIDI_SERIAL_PORT.write(bufBk1[i++]);
-//      MIDI_SERIAL_PORT.write(bufBk1[i]);
-//      break;
-//    }
+    if(bufBk1[i] == 0)
+    {
+      continue;
+    } 
+    else 
+    {
+      MIDI_SERIAL_PORT.write(bufBk1[i]);
+      MIDI_SERIAL_PORT.write(bufBk1[++i]);
+      MIDI_SERIAL_PORT.write(bufBk1[++i]);
+      MIDI_SERIAL_PORT.write(bufBk1[++i]);
+    }
   }
-  // int i=0;
-  // while(bufBk1[i] == 0)
-  // {
-  //   i++;
-  // }
-  // MIDI_SERIAL_PORT.write(bufBk1[i++]);
-  // MIDI_SERIAL_PORT.write(bufBk1[i++]);
-  // MIDI_SERIAL_PORT.write(bufBk1[i++]);
-  // MIDI_SERIAL_PORT.write(bufBk1[i++]);
   uhd_ack_in_received1(epAddr);
   uhd_ack_in_ready1(epAddr);
 }
