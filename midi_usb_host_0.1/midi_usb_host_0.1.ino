@@ -21,9 +21,9 @@
 #define Is_uhd_toggle_error0(p)                   usb_pipe_table[p].HostDescBank[0].STATUS_PIPE.bit.DTGLER
 #define Is_uhd_toggle_error1(p)                   usb_pipe_table[p].HostDescBank[1].STATUS_PIPE.bit.DTGLER
 
-#define MIDI_SERIAL_PORT Serial1
+// #define MIDI_SERIAL_PORT Serial1
 
-//Uart MIDI_UART(&sercom0, 7, 6, PAD_SERIAL1_RX, PAD_SERIAL1_TX );
+Uart MIDI_UART(&sercom0, 7, 6, PAD_SERIAL1_RX, PAD_SERIAL1_TX );
 
 struct MySettings : public midi::DefaultSettings
 {
